@@ -1,0 +1,462 @@
+NLP — Natural Language Processing
+
+NLP stands for Natural Language Processing.
+
+NLP is a branch of AI that helps computers understand, process, and generate human language.
+
+Simple Example
+
+When you type:
+
+"I love this movie!"
+
+An NLP system can understand that the sentence has a positive sentiment.
+
+NLP Flow
+Human Language
+      ↓
+Text / Speech
+      ↓
+NLP Processing
+      ↓
+Understand Meaning
+      ↓
+Result / Response
+Common NLP Tasks
+Task	Example
+Text Classification	Spam / Not Spam
+Sentiment Analysis	Positive / Negative
+Machine Translation	Hindi → English
+Chatbots	ChatGPT
+Speech Recognition	Voice → Text
+Text Summarization	Long article → Short summary
+Named Entity Recognition	Identify person, place, company
+Question Answering	Ask question → Get answer
+Basic NLP Process
+Raw Text
+   ↓
+Tokenization
+   ↓
+Remove unnecessary words
+   ↓
+Stemming / Lemmatization
+   ↓
+Convert Text → Numbers
+   ↓
+ML / Deep Learning Model
+   ↓
+Prediction
+Important Terms
+
+Tokenization → Breaking text into smaller parts.
+
+Example:
+
+"I love AI"
+     ↓
+["I", "love", "AI"]
+
+Stemming → Reduces words to a basic form.
+
+playing → play
+played  → play
+
+Lemmatization → Converts words to their meaningful base form.
+
+better → good
+running → run
+Applications
+🤖 Chatbots
+📧 Email spam detection
+🌐 Google Translate
+😊 Sentiment analysis
+🔎 Search engines
+🎙️ Voice assistants
+📝 Text summarization
+🧠 Easy Memory Trick
+
+NLP = Computer + Human Language
+
+One-line exam answer:
+NLP (Natural Language Processing) is a branch of Artificial Intelligence that enables computers to understand, interpret, process, and generate human language.
+
+
+
+
+
+
+
+
+
+
+
+
+1. What is NLP?
+
+NLP = Natural Language Processing
+
+It helps computers understand and work with human language.
+
+Example:
+
+"The food is good"
+        ↓
+      NLP
+        ↓
+Understand the text
+        ↓
+Positive / Negative / Other task
+2. Text Preprocessing
+
+Before giving text to a Machine Learning model, we need to clean and convert it.
+
+The lecture starts with examples such as:
+
+"The food is good"
+"The food is not good"
+"Pizza is amazing"
+
+The important idea is:
+
+Computer cannot directly understand words like humans, so text must be converted into numerical representation.
+
+3. One-Hot Encoding
+
+Each word is represented using 0 and 1.
+
+Suppose vocabulary is:
+
+food
+good
+pizza
+amazing
+
+Then a word can be represented like:
+
+food    → [1,0,0,0]
+good    → [0,1,0,0]
+pizza   → [0,0,1,0]
+amazing → [0,0,0,1]
+Problem
+
+If vocabulary contains 10,000 words, every word gets a vector of size 10,000.
+
+This creates a sparse matrix.
+
+Problems with One-Hot Encoding
+Very large vectors
+Sparse matrix
+Does not capture semantic meaning
+Vocabulary size determines vector size
+4. Bag of Words — BoW
+
+Bag of Words represents a sentence/document using the frequency/count of words.
+
+Example:
+
+S1 = "good boy"
+S2 = "good girl"
+S3 = "bad boy"
+
+Vocabulary:
+
+good, boy, girl, bad
+
+Then we count how many times each word appears.
+
+The important thing is:
+
+BoW cares about word occurrence/frequency, not word order.
+
+For example:
+
+"Dog bites man"
+"Man bites dog"
+
+BoW may give similar representations because it ignores word order.
+
+5. N-Grams
+
+N-Gram means looking at groups of N consecutive words.
+
+Unigram
+
+One word:
+
+I love NLP
+
+→ I
+→ love
+→ NLP
+Bigram
+
+Two words:
+
+I love
+love NLP
+Trigram
+
+Three words:
+
+I love NLP
+Formula/idea
+Unigram → 1 word
+Bigram  → 2 words
+Trigram → 3 words
+
+N-Grams help capture some word-order information, which basic Bag of Words cannot.
+
+6. TF-IDF
+
+TF-IDF = Term Frequency × Inverse Document Frequency
+
+It tells us how important a word is in a document.
+
+TF — Term Frequency
+
+How frequently a word appears in a document.
+
+TF =
+Number of times word appears
+----------------------------
+Total number of words
+IDF — Inverse Document Frequency
+
+It gives less importance to words that appear in many documents.
+
+Simple idea:
+
+Common word everywhere
+        ↓
+    Low importance
+
+Rare/important word
+        ↓
+    High importance
+TF-IDF
+TF-IDF = TF × IDF
+Easy example
+
+Words like:
+
+the
+is
+a
+
+appear in many documents, so they generally receive lower importance.
+
+A specific word appearing mainly in one document can receive higher importance.
+
+7. Word Embedding
+
+This is an important part of the lecture.
+
+Instead of representing a word using huge sparse vectors, we represent it using a dense numerical vector.
+
+Word
+ ↓
+Word Embedding
+ ↓
+Numerical Vector
+
+Example:
+
+King → [0.25, 0.71, 0.32, ...]
+Queen → [0.24, 0.69, 0.35, ...]
+
+The vectors capture semantic relationships between words.
+
+The PDF explains word embedding as representing words with real-valued vectors where nearby vectors are expected to have similar meanings.
+
+8. Word2Vec ⭐
+
+Word2Vec is one of the main topics in the PDF.
+
+It is a technique for learning word embeddings.
+
+The basic idea:
+
+Words appearing in similar contexts tend to have similar meanings.
+
+Example:
+
+The king rules the kingdom.
+The queen rules the kingdom.
+
+The model learns relationships between words from their contexts.
+
+9. Word2Vec — Two Methods
+
+There are two major approaches:
+
+1. CBOW
+
+CBOW = Continuous Bag of Words
+
+It uses surrounding/context words to predict the target word.
+
+Context Words
+     ↓
+   CBOW
+     ↓
+Target Word
+
+Example:
+
+"The cat is ___ on the mat"
+
+Context → The, cat, is, on, the, mat
+                     ↓
+                   CBOW
+                     ↓
+                  sleeping
+2. Skip-Gram
+
+Skip-Gram does the opposite.
+
+It uses a target word to predict surrounding/context words.
+
+Target Word
+     ↓
+ Skip-Gram
+     ↓
+Context Words
+
+Example:
+
+Target → cat
+   ↓
+Skip-Gram
+   ↓
+the, is, on, mat
+🧠 Easy Memory
+
+CBOW → Context → Word
+
+Skip-Gram → Word → Context
+
+10. Word2Vec Semantic Relationship
+
+The PDF also demonstrates the famous relationship:
+
+King - Man + Woman ≈ Queen
+
+The idea is that Word2Vec vectors can capture relationships between words.
+
+Similarly:
+
+King → Male concept
+Queen → Female concept
+
+The important point is semantic information is captured in the vector representation.
+
+11. Cosine Similarity
+
+To compare word vectors, the lecture introduces Cosine Similarity.
+
+It measures how similar two vectors are based on their direction.
+
+Simple idea:
+
+Vectors point in similar direction
+          ↓
+     High similarity
+
+Vectors point in different directions
+          ↓
+     Low similarity
+
+So if:
+
+King vector
+Queen vector
+
+are close in vector space, their cosine similarity can be high.
+
+12. Word2Vec Advantages
+
+According to the lecture, Word2Vec improves over simple representations because it:
+
+Captures semantic information
+Produces dense vectors
+Has a fixed embedding size
+Avoids the huge sparse representation problem
+Helps represent relationships between words
+🔥 Complete NLP Lecture Flow
+
+This is the easiest way to remember what Krish Sir taught:
+
+                    NLP
+                     ↓
+              Text Processing
+                     ↓
+        ┌────────────┴────────────┐
+        ↓                         ↓
+  Text Representation       Text Preprocessing
+        ↓
+ ┌──────┼────────┬─────────┐
+ ↓      ↓        ↓         ↓
+One-   BoW     N-Gram    TF-IDF
+Hot
+        ↓
+   Limitations
+        ↓
+   Word Embedding
+        ↓
+     Word2Vec
+        ↓
+   ┌────┴─────┐
+   ↓          ↓
+ CBOW      Skip-Gram
+   ↓          ↓
+Context → Word   Word → Context
+        ↓
+Cosine Similarity
+        ↓
+Semantic Relationships
+⭐ What You Should Remember for Exam
+One-Hot Encoding
+       ↓
+0 and 1 representation
+       ↓
+Sparse + no meaning
+
+Bag of Words
+       ↓
+Word frequency
+       ↓
+Ignores word order
+
+N-Gram
+       ↓
+Groups of N words
+       ↓
+Captures some word order
+
+TF-IDF
+       ↓
+Word importance
+       ↓
+TF × IDF
+
+Word Embedding
+       ↓
+Words → Dense vectors
+       ↓
+Captures meaning
+
+Word2Vec
+       ↓
+Learns word relationships
+       ↓
+CBOW + Skip-Gram
+🧠 Final Memory Trick
+
+One-Hot → Encode
+BoW → Count
+N-Gram → Word Groups
+TF-IDF → Importance
+Embedding → Meaning
+Word2Vec → Relationships
+CBOW → Context → Word
+Skip-Gram → Word → Context
